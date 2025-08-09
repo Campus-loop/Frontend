@@ -1,7 +1,5 @@
 import './globals.css';
 import Script from 'next/script';
-import { UserProvider } from './context/UserContext';
-import AppHeader from '@/context/AppHeader';
 
 export const metadata = {
     title: 'RestoFlowing',
@@ -32,10 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <script src="/js/config.js" defer></script>
         </head>
         <body>
-            <UserProvider>
-                <AppHeader />
                 {children}
-            </UserProvider>
             
 
 
