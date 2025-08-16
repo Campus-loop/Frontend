@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "next": "15.4.1",
+    "rc-drawer": "^7.3.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "stomp": "^0.1.1",
