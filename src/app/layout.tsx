@@ -59,6 +59,40 @@ const Header = () => {
                     className="px-4 md:px-8 lg:px-0 h-16 sm:h-20 lg:h-36 xl:h-40 w-full transition duration-200 ease-in-out border-b border-jnGray-300 fixed z-20 text-gray-700 bg-white innerSticky body-font"
                 >
                     <div className="h-full lg:h-20 xl:h-24 px-0 lg:px-8 2xl:px-16 max-w-[1024px] min-[1600px]:max-w-[1280px] flex items-center mx-auto box-content justify-between relative before:absolute before:w-screen before:bg-[#F1F1F1] before:bottom-0">
+                        <button
+                            aria-label="Menu"
+                            className="flex flex-col items-center justify-center flex-shrink-0 outline-none menuBtn start-0 focus:outline-none lg:hidden basis-[24px] w-[24px] h-[24px]"
+                        >
+                            <svg
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            >
+                            <path
+                                d="M5 18H19"
+                                stroke="#141313"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M5 12H19"
+                                stroke="#141313"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            <path
+                                d="M5 6L19 6"
+                                stroke="#141313"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            </svg>
+                        </button>
                         <div className="flex flex-1 lg:max-w-[200px]">
                             <a
                                 style={{ width: 200, height: 30 }}
@@ -466,6 +500,34 @@ const Header = () => {
                                 </li>
                             </ul>
                         </div>
+                        <button
+                            aria-label="search-button"
+                            className="flex items-center justify-center flex-shrink-0 ga4_main_top_search end-0 focus:outline-none lg:hidden basis-[24px] w-[24px] h-[24px]"
+                        >
+                            <svg
+                            width={24}
+                            height={24}
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-[24px] h-[24px]"
+                            >
+                            <path
+                                d="M10.0278 19.0556C14.3233 19.0556 17.8056 15.5733 17.8056 11.2778C17.8056 6.98223 14.3233 3.5 10.0278 3.5C5.73223 3.5 2.25 6.98223 2.25 11.2778C2.25 15.5733 5.73223 19.0556 10.0278 19.0556Z"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                fill="white"
+                            />
+                            <path
+                                d="M21 21.8999L15.5 16.8999"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            />
+                            </svg>
+                        </button>
                         <aside className="max-[1279px]:hidden absolute w-[98px] space-y-2 z-30 flex flex-col min-h-[306px] px-2 py-2 rounded bg-white border border-gray-300 top-44 -right-20">
                             <h2 className="text-xs w-full text-center font-semibold relative min-[1635px]:before:absolute min-[1635px]:before:top-0">
                                 최근본상품
@@ -609,6 +671,8 @@ const Header = () => {
                             </ul>
                         </aside>
                     </div>
+                    
+
                     <div className="md:px-8 2xl:px-16 lg:flex lg:h-16 items-center min-[1600px]:max-w-[1280px] max-w-[1024px] hidden headerBottom mx-auto box-content">
                         <div className="relative flex-shrink-0 categoryMenu hidden lg:block">
                             <div className="flex items-center justify-center gap-2 px-3.5 xl:px-4 text-sm relative before:absolute before:-bottom-2.5 before:h-2.5 before:w-full before:z-10 font-semibold text-white transition-colors rounded-md cursor-pointer h-11 bg-heading hover:bg-black">
