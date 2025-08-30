@@ -1,6 +1,7 @@
 "use client"
 
 import { useChatStore } from "@/app/stores/chatStores";
+import Link from "next/link";
 
 const HeaderContainer = () => {
     return (
@@ -374,9 +375,9 @@ const HeaderContainer = () => {
                                     <ChatButton />
                                 </li>
                                 <li className='after:contents-[""] after:absolute after:w-[1px] after:h-4 after:bg-jnGray-300 after:right-0 before:contents-[""] before:absolute before:w-[1px] before:h-4 before:bg-jnGray-300 before:left-0 ga4_main_top_menu relative flex items-center justify-center px-3'>
-                                    <a
+                                    <Link
                                         className="flex items-center justify-center [&>p]:ml-1"
-                                        href="/product/form?type=regist"
+                                        href="/product/sale"
                                     >
                                         <svg
                                             id="판매하기"
@@ -426,10 +427,13 @@ const HeaderContainer = () => {
                                             />
                                         </svg>
                                         <p id="판매하기">판매하기</p>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li className="relative flex flex-1 pl-3">
-                                    <button className="flex items-center justify-center [&>p]:ml-1">
+                                    
+                                    <Link className="flex items-center justify-center [&>p]:ml-1"
+                                          href="/mypage"
+                                    >
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width={24}
@@ -446,7 +450,7 @@ const HeaderContainer = () => {
                                             />
                                         </svg>
                                         <p>마이</p>
-                                    </button>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
@@ -478,148 +482,6 @@ const HeaderContainer = () => {
                                 />
                             </svg>
                         </button>
-                        <aside className="max-[1279px]:hidden absolute w-[98px] space-y-2 z-30 flex flex-col min-h-[306px] px-2 py-2 rounded bg-white border border-gray-300 top-44 -right-20">
-                            <h2 className="text-xs w-full text-center font-semibold relative min-[1635px]:before:absolute min-[1635px]:before:top-0">
-                                최근본상품
-                            </h2>
-                            <ul className="flex-1 space-y-3">
-                                <li className="relative group">
-                                    <button
-                                        aria-label="최근 본 상품 메가 라부부 스케치 1000%새상품 / 미개봉 삭제"
-                                        className="absolute z-10 w-4 h-4 right-1 top-1"
-                                    >
-                                        <svg
-                                            stroke="black"
-                                            fill="currentColor"
-                                            strokeWidth={20}
-                                            viewBox="0 0 512 512"
-                                            className="text-gray-100"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm75.31 260.69a16 16 0 11-22.62 22.62L256 278.63l-52.69 52.68a16 16 0 01-22.62-22.62L233.37 256l-52.68-52.69a16 16 0 0122.62-22.62L256 233.37l52.69-52.68a16 16 0 0122.62 22.62L278.63 256z" />
-                                        </svg>
-                                    </button>
-                                    <a
-                                        className="relative block h-20 aspect-square rounded overflow-hidden dim"
-                                        href="/product/212209683"
-                                    >
-                                        <img
-                                            alt="메가 라부부 스케치 1000%새상품 / 미개봉"
-                                            loading="lazy"
-                                            decoding="async"
-                                            data-nimg="fill"
-                                            className="object-cover"
-                                            src="https://img2.joongna.com/media/original/2025/06/10/1749554682055QWI_8E2Aa.jpg?impolicy=thumb"
-                                            style={{
-                                                position: "absolute",
-                                                height: "100%",
-                                                width: "100%",
-                                                inset: 0,
-                                                color: "transparent"
-                                            }}
-                                        />
-                                    </a>
-                                    <div className="absolute top-0 hidden h-20 px-4 py-3 text-white rounded group-hover:block right-24 w-44 bg-black/80">
-                                        <h3 className="mb-1 overflow-hidden font-semibold text-ellipsis whitespace-nowrap">
-                                            메가 라부부 스케치 1000%새상품 / 미개봉
-                                        </h3>
-                                        <p className="text-[14px]">2,500,000원</p>
-                                    </div>
-                                </li>
-                                <li className="relative group">
-                                    <button
-                                        aria-label="최근 본 상품 커버낫 우먼 라운드넥 셔링 롱 슬리브 라이트 그레이 삭제"
-                                        className="absolute z-10 w-4 h-4 right-1 top-1"
-                                    >
-                                        <svg
-                                            stroke="black"
-                                            fill="currentColor"
-                                            strokeWidth={20}
-                                            viewBox="0 0 512 512"
-                                            className="text-gray-100"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm75.31 260.69a16 16 0 11-22.62 22.62L256 278.63l-52.69 52.68a16 16 0 01-22.62-22.62L233.37 256l-52.68-52.69a16 16 0 0122.62-22.62L256 233.37l52.69-52.68a16 16 0 0122.62 22.62L278.63 256z" />
-                                        </svg>
-                                    </button>
-                                    <a
-                                        className="relative block h-20 aspect-square rounded overflow-hidden dim"
-                                        href="/product/216262547"
-                                    >
-                                        <img
-                                            alt="커버낫 우먼 라운드넥 셔링 롱 슬리브 라이트 그레이"
-                                            loading="lazy"
-                                            decoding="async"
-                                            data-nimg="fill"
-                                            className="object-cover"
-                                            src="https://img2.joongna.com/media/original/2025/07/26/1753523330102wzI_FDWwF.jpg?impolicy=thumb"
-                                            style={{
-                                                position: "absolute",
-                                                height: "100%",
-                                                width: "100%",
-                                                inset: 0,
-                                                color: "transparent"
-                                            }}
-                                        />
-                                    </a>
-                                    <div className="absolute top-0 hidden h-20 px-4 py-3 text-white rounded group-hover:block right-24 w-44 bg-black/80">
-                                        <h3 className="mb-1 overflow-hidden font-semibold text-ellipsis whitespace-nowrap">
-                                            커버낫 우먼 라운드넥 셔링 롱 슬리브 라이트 그레이
-                                        </h3>
-                                        <p className="text-[14px]">20,000원</p>
-                                    </div>
-                                </li>
-                                <li className="relative group">
-                                    <button
-                                        aria-label="최근 본 상품 [기아]스포티지 4세대 (QL) 디젤 2.0 2WD 프 삭제"
-                                        className="absolute z-10 w-4 h-4 right-1 top-1"
-                                    >
-                                        <svg
-                                            stroke="black"
-                                            fill="currentColor"
-                                            strokeWidth={20}
-                                            viewBox="0 0 512 512"
-                                            className="text-gray-100"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M256 48C141.31 48 48 141.31 48 256s93.31 208 208 208 208-93.31 208-208S370.69 48 256 48zm75.31 260.69a16 16 0 11-22.62 22.62L256 278.63l-52.69 52.68a16 16 0 01-22.62-22.62L233.37 256l-52.68-52.69a16 16 0 0122.62-22.62L256 233.37l52.69-52.68a16 16 0 0122.62 22.62L278.63 256z" />
-                                        </svg>
-                                    </button>
-                                    <a
-                                        className="relative block h-20 aspect-square rounded overflow-hidden dim"
-                                        href="/product/217373651"
-                                    >
-                                        <img
-                                            alt="[기아]스포티지 4세대 (QL) 디젤 2.0 2WD 프"
-                                            loading="lazy"
-                                            decoding="async"
-                                            data-nimg="fill"
-                                            className="object-cover"
-                                            src="https://img2.joongna.com/media/original/2025/08/12/1754988198734ea8_WdJa2.png?impolicy=thumb"
-                                            style={{
-                                                position: "absolute",
-                                                height: "100%",
-                                                width: "100%",
-                                                inset: 0,
-                                                color: "transparent"
-                                            }}
-                                        />
-                                    </a>
-                                    <div className="absolute top-0 hidden h-20 px-4 py-3 text-white rounded group-hover:block right-24 w-44 bg-black/80">
-                                        <h3 className="mb-1 overflow-hidden font-semibold text-ellipsis whitespace-nowrap">
-                                            [기아]스포티지 4세대 (QL) 디젤 2.0 2WD 프
-                                        </h3>
-                                        <p className="text-[14px]">11,000,000원</p>
-                                    </div>
-                                </li>
-                            </ul>
-                        </aside>
                     </div>
                     <div className="md:px-8 2xl:px-16 lg:flex lg:h-16 items-center min-[1600px]:max-w-[1280px] max-w-[1024px] hidden headerBottom mx-auto box-content">
                         <div className="relative flex-shrink-0 categoryMenu hidden lg:block">
