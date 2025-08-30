@@ -19,9 +19,6 @@ const layout = ({ children }: { children: React.ReactNode }) => {
                     <ChatDrawer />
                 </body>
             </html>
-
-
-
         </>
     )
 }
