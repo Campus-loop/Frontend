@@ -1,6 +1,34 @@
 "use client"
+import { useState } from "react"
+import { useChatStore } from "@/app/stores/chatStores";
+
 
 const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
+
+    const ChatBackButton = () => {
+        const { backToList } = useChatStore();
+        return (
+            <button className="w-10 h-10 basis-10"
+            onClick={backToList}
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    fill="none"
+                >
+                    <path
+                        stroke="#141313"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="1.5"
+                        d="m12.5 19.5-8.075-7.125a.5.5 0 0 1 0-.75L12.5 4.5"
+                    />
+                </svg>
+            </button>
+        );
+      };
+
     return (
         <>
             <div
@@ -10,22 +38,9 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
             >
                 <div className="flex flex-col w-full h-full justify-between">
                     <div className="min-h-[70px] basis-[70px] flex justify-center items-center px-[20px]">
-                        <button className="w-10 h-10 basis-10">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={24}
-                                height={24}
-                                fill="none"
-                            >
-                                <path
-                                    stroke="#141313"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.5"
-                                    d="m12.5 19.5-8.075-7.125a.5.5 0 0 1 0-.75L12.5 4.5"
-                                />
-                            </svg>
-                        </button>
+                    <ChatBackButton />
+
+
                         <h2 className="flex flex-col md:flex-row justify-center items-center md:space-x-2 flex-1 text-lg font-semibold text-center text-jnGray-900 cursor-pointer">
                             <p className="mb-0">
                                 <span className="flex items-center justify-center space-x-2">
@@ -152,74 +167,6 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                         </div>
                                     </a>
                                 </div>
-                                <button className="left-1/2 -translate-x-1/2 z-[21] w-fit absolute -bottom-3 translate-y-full [&>div]:!px-5">
-                                    <div className="flex justify-center gap-1 items-center text-left w-fit font-bold rounded-full py-1 h-fit bg-white min-w-max !px-4 !py-2 text-sm border border-jnGray-200 shadow-[0px_4px_8px_0px_rgba(0,0,0,0.12)]">
-                                        <div className="flex relative justify-center items-center p-[1px] w-4 h-4 text-[#00AEAC]">
-                                            <div className="absolute rounded-full top-0 left-0 w-full h-full bg-gradient-to-br from-[#26DC4A] to-white animate-spin" />
-                                            <svg
-                                                width="100%"
-                                                height="100%"
-                                                viewBox="0 0 10 10"
-                                                fill="none"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="relative p-0.5 bg-white rounded-full"
-                                            >
-                                                <g clipPath="url(#clip0_5032_133230)">
-                                                    <path
-                                                        d="M6.50206 3.6298C6.28346 2.00195 5.68869 0.833496 4.99738 0.833496C4.36821 0.833496 3.82282 1.79889 3.56593 3.1976C4.05806 3.20592 4.5452 3.30579 4.97962 3.50497C4.9885 3.50885 4.99238 3.51718 4.99294 3.52605C4.99294 3.53826 4.98517 3.55102 4.97075 3.55102C4.69611 3.5599 4.42147 3.57266 4.14739 3.59152C3.93045 3.60706 3.71241 3.6287 3.49492 3.65644C3.25745 3.68695 3.02165 3.72523 2.78974 3.7735C2.6932 3.79237 2.5961 3.8129 2.50012 3.83509C1.48812 4.11638 0.833984 4.56246 0.833984 5.06125C0.833984 5.7115 1.94751 6.26965 3.51489 6.48992C3.74403 8.05452 4.32271 9.16583 4.99738 9.16583C5.61101 9.16583 6.14808 8.24649 6.41384 6.90326C5.86623 6.91325 5.31862 6.81116 4.83481 6.58923C4.81096 6.57813 4.7871 6.56759 4.7638 6.55594C4.74271 6.5454 4.74937 6.50989 4.77434 6.51045C5.04953 6.50878 5.32361 6.50323 5.59825 6.49214C5.89619 6.47882 6.19801 6.45441 6.49595 6.41668C6.65186 6.39671 6.80721 6.37396 6.96034 6.34622C7.40919 6.27132 7.85583 6.16424 8.27416 5.98392C8.42729 5.91734 8.57876 5.84188 8.71913 5.74978C9.00486 5.54283 9.16687 5.3087 9.16687 5.06125C9.16687 4.41321 8.06111 3.8534 6.50206 3.6298Z"
-                                                        fill="url(#paint0_linear_5032_133230)"
-                                                    />
-                                                </g>
-                                                <defs>
-                                                    <linearGradient
-                                                        id="paint0_linear_5032_133230"
-                                                        x1="9.16732"
-                                                        y1="0.833496"
-                                                        x2="3.75065"
-                                                        y2="7.0835"
-                                                        gradientUnits="userSpaceOnUse"
-                                                    >
-                                                        <stop stopColor="#0DCC5A" />
-                                                        <stop offset={1} stopColor="#009F1F" />
-                                                    </linearGradient>
-                                                    <clipPath id="clip0_5032_133230">
-                                                        <rect width={10} height={10} fill="white" />
-                                                    </clipPath>
-                                                </defs>
-                                            </svg>
-                                        </div>
-                                        <span>
-                                            <div className="flex gap-1 items-center body-regular-14">
-                                                <div>
-                                                    <strong>안심결제</strong>쓰고 사기 걱정 없는 중고거래
-                                                </div>
-                                                <svg
-                                                    width={20}
-                                                    height={20}
-                                                    viewBox="0 0 20 20"
-                                                    fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="w-4 h-4 -rotate-90 rotate-[0deg]"
-                                                >
-                                                    <g clipPath="url(#clip0_2224_69059)">
-                                                        <path
-                                                            d="M4.25 7L10 12.75L15.75 7"
-                                                            stroke="#787E89"
-                                                            strokeWidth="1.5"
-                                                            strokeLinecap="round"
-                                                            strokeLinejoin="round"
-                                                        />
-                                                    </g>
-                                                    <defs>
-                                                        <clipPath id="clip0_2224_69059">
-                                                            <rect width={20} height={20} fill="white" />
-                                                        </clipPath>
-                                                    </defs>
-                                                </svg>
-                                            </div>
-                                        </span>
-                                    </div>
-                                </button>
                             </div>
                             <div className="overflow-auto p-5 h-full">
                                 <div />
@@ -841,37 +788,8 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="bg-jngreen flex justify-between items-center gap-[4px] px-[20px] py-[11px] cursor-pointer -mx-[20px] -mb-5">
-                                        <div className="w-full flex justify-between items-center text-white whitespace-pre-wrap detail-medium-12">
-                                            <p className="mb-0">
-                                                앱에서는 채팅 응답이 더 빠르고 편리합니다. 지금 설치하면 거래
-                                                확률을 높일 수 있어요!
-                                            </p>
-                                            <button className="underline">앱 다운로드</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div className="carouselWrapper relative pt-1.5 pb-2.5 pl-1 pr-2.5 h-[44px] quick-menu-slider-wrapper">
-                        <div
-                            className="swiper swiper-initialized swiper-horizontal swiper-pointer-events"
-                            dir="ltr"
-                        >
-                            <div className="swiper-wrapper">
-                                <div className="swiper-slide swiper-slider-chat-event swiper-slide-active flex items-center ml-2 w-fit">
-                                    <li className="cursor-pointer w-fit">
-                                        <div className="flex items-center h-[31px] rounded-[40px] border border-jnGray-300 px-3 py-[6.5px] gap-[6px] w-fit">
-                                            <span className="inline-block text-xs font-medium">
-                                                중고나라 안심보상
-                                            </span>
-                                        </div>
-                                    </li>
-                                </div>
-                            </div>
-                            <div className="swiper-button-prev swiper-button-disabled swiper-button-lock" />
-                            <div className="swiper-button-next swiper-button-disabled swiper-button-lock" />
                         </div>
                     </div>
                     <div>
