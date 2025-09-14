@@ -17,6 +17,7 @@ export const useChatStore = create<ChatState>((set) => ({
   closeDrawer: () => set({ isDrawerOpen: false, currentChatId: null }),
   openChatRoom: (chatId: number) => set({ currentChatId: chatId }),
   closeChatRoom: () => set({ currentChatId: null }),
+  backToList: () => set({ currentChatId: null }),  
 }))
 
 // Mock 데이터

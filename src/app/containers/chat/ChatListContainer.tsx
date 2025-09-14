@@ -40,7 +40,7 @@ const ChatListContainer = () => {
                             <p className="mb-0">
                                 <span className="flex items-center justify-center space-x-2">
                                     <span>채팅</span>
-                                    <span className="text-[10px] leading-[10px] px-[5px] py-[3px] bg-jnGray-900 text-jnGray-100 font-bold rounded-sm hidden">
+                                    <span className="text-[10px] px-[5px] py-[3px] bg-jnGray-900 text-jnGray-100 font-bold rounded-sm hidden">
                                         공식
                                     </span>
                                     <svg

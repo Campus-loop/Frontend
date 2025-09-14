@@ -3,7 +3,6 @@
 // import { useState } from 'react'
 import Drawer from 'rc-drawer'
 import 'rc-drawer/assets/index.css'
-import ChatLayoutContainer from './ChatLayoutContainer'
 import { useChatStore } from '@/app/stores/chatStores'
 import ChatListContainer from "./ChatListContainer";
 import ChatRoomContainer from "./ChatRoomContainer";
@@ -27,7 +26,6 @@ const ChatDrawer = () => {
             mask={true}
             keyboard={true}
             destroyOnClose={false}
-            closeIcon={null}
         >
             {currentChatId ? (
                 <ChatRoomContainer chatId={currentChatId} />
