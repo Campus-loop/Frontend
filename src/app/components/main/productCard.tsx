@@ -105,7 +105,7 @@ export function ProductCard({
           <div className="flex justify-between items-center">
             <div className="flex items-center flex-wrap [&>*:not(:first-child)]:ml-1.5 [&>*]:mb-0.5" />
             <div className="text-xs text-gray-400">
-              찜 {currentLikes} ∙ 채팅 {chats}
+              Likes {currentLikes} ∙ Chat {chats}
             </div>
           </div>
         </div>

@@ -4,7 +4,14 @@ import { useChatStore } from "@/app/stores/chatStores";
 
 
 const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
+    // textfield function
+    const [message, setMessage] = useState("");
+    const maxLength = 1000;
 
+
+    
+
+    // Back Button
     const ChatBackButton = () => {
         const { backToList } = useChatStore();
         return (
@@ -66,72 +73,15 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                     </span>
                                 </span>
                             </p>
-                            <p className="text-[12px] text-gray-400 h-4">보통 1시간 이내 응답</p>
                             <p />
                         </h2>
-                        <div>
-                            <div className="flex gap-[8px]">
-                                <button>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={24}
-                                        height={24}
-                                        fill="none"
-                                    >
-                                        <path
-                                            stroke="#141313"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.6"
-                                            d="M9.095 12.116A8.05 8.05 0 0 0 2.2 20.082h12.506M10.254 12.029q-.594 0-1.16.087"
-                                        />
-                                        <path
-                                            fill="#fff"
-                                            stroke="#141313"
-                                            strokeMiterlimit={10}
-                                            strokeWidth="1.6"
-                                            d="M13.583 7.264a3.464 3.464 0 1 0-6.929 0v1.303a3.464 3.464 0 1 0 6.929 0z"
-                                        />
-                                        <path
-                                            fill="#fff"
-                                            d="M15.942 12.386a4.41 4.41 0 0 1 4.404 4.403 4.4 4.4 0 0 1-4.404 4.404 4.4 4.4 0 0 1-4.403-4.404 4.4 4.4 0 0 1 4.403-4.403m0 7.262a2.864 2.864 0 0 0 2.858-2.859 2.864 2.864 0 0 0-2.858-2.858 2.864 2.864 0 0 0-2.858 2.858 2.864 2.864 0 0 0 2.858 2.859m0-8.517a5.667 5.667 0 0 0-5.659 5.658c0 3.12 2.54 5.66 5.66 5.66 3.118 0 5.658-2.54 5.658-5.66s-2.54-5.659-5.659-5.659m0 7.261a1.605 1.605 0 0 1-1.603-1.603 1.6 1.6 0 0 1 1.603-1.603 1.6 1.6 0 0 1 1.603 1.603 1.6 1.6 0 0 1-1.603 1.603"
-                                        />
-                                        <path
-                                            fill="#fff"
-                                            stroke="#141313"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.6"
-                                            d="M15.944 20.41a3.627 3.627 0 0 0 3.63-3.63 3.627 3.627 0 0 0-3.63-3.631 3.627 3.627 0 0 0-3.632 3.63 3.627 3.627 0 0 0 3.632 3.632"
-                                        />
-                                        <path
-                                            stroke="#141313"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.6"
-                                            d="m21.062 21.743-2.569-2.337"
-                                        />
-                                    </svg>
-                                </button>
-                                <button>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width={24}
-                                        height={24}
-                                        fill="none"
-                                    >
-                                        <path
-                                            fill="#141313"
-                                            stroke="#141313"
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="1.25"
-                                            d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2M12 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2M12 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2"
-                                        />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+
+
+
+
+                        
+
+
                     </div>
                     <div className="h-full overflow-auto">
                         <div className="flex flex-col justify-between w-full h-full bg-[#e9edef]">
@@ -259,7 +209,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </p>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:53
                                                             </span>
@@ -305,7 +255,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </p>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:53
                                                             </span>
@@ -388,7 +338,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </p>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:55
                                                             </span>
@@ -415,7 +365,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             />
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:57
                                                             </span>
@@ -473,7 +423,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:57
                                                             </span>
@@ -493,7 +443,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </p>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 10:57
                                                             </span>
@@ -573,7 +523,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 0:16
                                                             </span>
@@ -649,7 +599,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 0:18
                                                             </span>
@@ -720,7 +670,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 0:20
                                                             </span>
@@ -778,7 +728,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                                             </div>
                                                         </div>
                                                         <div className="flex flex-col">
-                                                            <p className="mb-0 text-right text-[13px]">읽음</p>
+                                                            <p className="mb-0 text-right text-[13px]">Read</p>
                                                             <span className="block text-[13px] uppercase text-end">
                                                                 오전 0:20
                                                             </span>
@@ -793,16 +743,18 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                         </div>
                     </div>
                     <div>
-                        <form className="bg-[#F7F9FA] py-3 px-3 flex flex-col rounded-xl focus-within:shadow-banner h-auto">
+                        <div className="bg-[#F7F9FA] py-3 px-3 flex flex-col rounded-xl focus-within:shadow-banner h-auto">
                             <textarea
                                 id="chat-input"
                                 title="채팅"
                                 autoComplete="off"
-                                maxLength={1000}
+                                maxLength={maxLength}
                                 className="shrink-0 bg-transparent placeholder:text-[#9CA3AF] outline-none resize-none text-md h-16 w-full pre-wrap"
-                                placeholder="메시지를 입력해주세요"
+                                placeholder="please enter "
                                 name="chat"
-                                // defaultValue={""}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+
                             />
                             <div className="flex justify-between mt-3">
                                 <div className="flex gap-2" id="chat-input-action-button-container">
@@ -841,26 +793,11 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                             />
                                         </div>
                                     </div>
-                                    <button className="w-6 h-6">
-                                        <svg
-                                            stroke="currentColor"
-                                            fill="currentColor"
-                                            strokeWidth={0}
-                                            viewBox="0 0 24 24"
-                                            className="w-full h-full"
-                                            height="1em"
-                                            width="1em"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                        >
-                                            <path d="M12,2C6.486,2,2,6.486,2,12s4.486,10,10,10s10-4.486,10-10S17.514,2,12,2z M12,20c-4.411,0-8-3.589-8-8s3.589-8,8-8 s8,3.589,8,8S16.411,20,12,20z" />
-                                            <path d="M14.829,14.828c-0.185,0.184-0.384,0.349-0.592,0.489c-0.217,0.146-0.445,0.27-0.68,0.369 c-0.244,0.103-0.496,0.181-0.749,0.233c-0.531,0.108-1.087,0.108-1.616,0c-0.254-0.052-0.506-0.13-0.75-0.233 c-0.234-0.099-0.463-0.223-0.679-0.369c-0.209-0.141-0.408-0.305-0.593-0.489c-0.181-0.181-0.346-0.38-0.488-0.592l-1.658,1.119 c0.215,0.318,0.462,0.617,0.734,0.889c0.273,0.273,0.572,0.52,0.887,0.731c0.323,0.218,0.666,0.404,1.02,0.553 c0.365,0.154,0.744,0.272,1.128,0.35C11.189,17.959,11.596,18,12,18s0.811-0.041,1.208-0.122c0.383-0.078,0.762-0.196,1.127-0.35 c0.354-0.149,0.696-0.335,1.021-0.553c0.313-0.212,0.612-0.458,0.886-0.731c0.272-0.271,0.52-0.571,0.734-0.889l-1.658-1.119 C15.175,14.448,15.01,14.647,14.829,14.828z" />
-                                            <circle cx="8.5" cy="10.5" r="1.5" />
-                                            <circle cx="15.493" cy="10.493" r="1.493" />
-                                        </svg>
-                                    </button>
                                 </div>
                                 <div className="flex items-end space-x-2">
-                                    <span className="text-sm leading-5 text-gray-400">0 / 1000</span>
+                                    <span className="text-sm leading-5 text-gray-400">
+                                        {message.length} / {maxLength}
+                                    </span>
                                     <button type="submit"  className="w-6 h-6">
                                         <svg
                                             stroke="currentColor"
@@ -877,7 +814,7 @@ const ChatRoomContainer = ({ chatId }: { chatId: number }) => {
                                     </button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
