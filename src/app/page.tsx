@@ -11,7 +11,7 @@ export default function UsedMarketPage() {
 
   return (
     <>
-      <div className="mx-auto px-5 md:px-8 2xl:px-16 box-content pt-8 pb-16 bg-white lg:pt-[72px] lg:pb-20 max-w-[1024px] min-[1600px]:max-w-[1280px]">
+      <div className="mx-auto px-5 md:px-8 2xl:px-16 box-content pt-8 pb-16 bg-white lg:pb-20 max-w-[1024px] min-[1600px]:max-w-[1280px]">
         <div className="w-full 2xl:-ms-9">
           <div className="relative">
             <h2 className="text-[28px] font-normal mb-[10px]">Search Results</h2>
@@ -162,7 +162,7 @@ export default function UsedMarketPage() {
 
 
                 <tr>
-                  <td>가격</td>
+                  <td>Price</td>
                   <td className="price-filter">
                     <input
                       type="text"
