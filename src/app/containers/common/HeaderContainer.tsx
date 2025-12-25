@@ -2,6 +2,7 @@
 
 import { useChatStore } from "@/app/stores/chatStores";
 import Link from "next/link";
+import Image from "next/image";
 
 const HeaderContainer = () => {
     return (
@@ -57,7 +58,7 @@ const HeaderContainer = () => {
                                 className="ga4_main_top_logo max-[1023px]:!w-[97px] max-[1023px]:!h-[16px] lg:w-full lg:flex-1 inline-flex focus:outline-none relative"
                                 href="/"
                             >
-                                <img
+                                <Image
                                     alt="Joonggonara"
                                     loading="eager"
                                     decoding="async"
