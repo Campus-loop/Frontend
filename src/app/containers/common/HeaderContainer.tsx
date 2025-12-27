@@ -63,6 +63,8 @@ const HeaderContainer = () => {
                                     loading="eager"
                                     decoding="async"
                                     data-nimg="fill"
+                                    width={30}
+                                    height={30}
                                     style={{
                                         position: "absolute",
                                         height: "100%",
@@ -73,7 +75,7 @@ const HeaderContainer = () => {
                                         bottom: 0,
                                         color: "transparent"
                                     }}
-                                    src=""
+                                    src="/public/img/icons/brnads/github.png"
                                 />
                             </a>
                         </div>
