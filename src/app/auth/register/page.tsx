@@ -1,96 +1,15 @@
 "use client";
 
 import { FormField, TextInput, SubmitBar } from "@/app/components/auth/authForms";
+import { useRegisterForm } from "@/app/components/auth/authFucntion";
 import { useMemo, useState } from "react";
 
-type Values = { email: string; password: string; passwordConf: string };
-type Errors = { email?: string; password?: string; passwordConf?: string };
-
-// 정규식
-const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// 최소 6자, 숫자 1개 이상, 특수문자 1개 이상(요구사항 반영)
-const pwNumberRe = /[0-9]/;
-const pwSpecialRe = /[!@#$%^&*()_\-+={[}\]|\\:;"'<>,.?/]/;
 
 export default function OwnerRegisterPage() {
-  const [values, setValues] = useState<Values>({
-    email: "",
-    password: "",
-    passwordConf: "",
-  });
-  const [errors, setErrors] = useState<Errors>({});
-  const [submitting, setSubmitting] = useState(false);
+  const { values, onChange, visibleErrors, isValid, submitting, onSubmit } =
+  useRegisterForm();
 
-  // 단일 진실원: 현재 values를 기반으로 전체 에러 계산
-  const validate = (v: Values): Errors => {
-    const next: Errors = {};
 
-    // Email
-    if (!emailRe.test(v.email)) {
-      next.email = "Enter a valid email address";
-    } else if (!v.email.endsWith(".edu")) {
-      next.email = "Only .edu emails are allowed";
-    }
-
-    // Password
-    if (v.password.length < 6) {
-      next.password = "Password must be at least 6 characters";
-    } else if (!pwNumberRe.test(v.password)) {
-      next.password = "Password must include at least one number";
-    } else if (!pwSpecialRe.test(v.password)) {
-      next.password = "Password must include at least one special character";
-    }
-
-    // Password Confirmation
-    if (v.passwordConf !== v.password) {
-      next.passwordConf = "Passwords do not match";
-    }
-
-    return next;
-  };
-
-  // values가 바뀔 때마다 현재 에러를 미리 산출
-  const currentErrors = useMemo(() => validate(values), [values]);
-
-  // 폼 유효성: 에러가 없고, 필수값이 모두 존재
-  const isValid = useMemo(() => {
-    if (!values.email || !values.password || !values.passwordConf) return false;
-    return Object.keys(currentErrors).length === 0;
-  }, [values, currentErrors]);
-
-  // 필드 변경 핸들러: 값 갱신 후 해당 필드 에러만 반영(UX를 위해)
-  const onChange =
-    (name: keyof Values) =>
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const nextValues = { ...values, [name]: e.target.value };
-      setValues(nextValues);
-
-      // 해당 필드의 에러만 추출해서 반영
-      const nextAllErrors = validate(nextValues);
-      setErrors((prev) => ({ ...prev, [name]: nextAllErrors[name] }));
-    };
-
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // 제출 시점에 전체 재검증(신뢰성)
-    const nextErrors = validate(values);
-    setErrors(nextErrors);
-
-    if (Object.keys(nextErrors).length > 0) {
-      // 에러 있으면 제출 중단
-      return;
-    }
-
-    try {
-      setSubmitting(true);
-      // ✅ 모든 검증 통과 → 제출 로직 수행 (API 호출 등)
-      // await api.signup(values);
-      console.log("submitted!", values);
-    } finally {
-      setSubmitting(false);
-    }
-  };
 
   return (
     <>
@@ -125,8 +44,13 @@ export default function OwnerRegisterPage() {
                 <div className="flex flex-col flex-1 [&>*]:flex [&>*]:flex-col [&>*]:flex-1">
                   <div>
                     <div className="space-y-8 my-6 px-8">
-                      <form onSubmit={onSubmit} className="flex flex-col grow shrink-0 basis-auto">
-                        <FormField id="email" label="Email" error={errors.email}>
+                      <form onSubmit={(e) =>
+        onSubmit(e, async (vals) => {
+          // 여기서 API 호출
+          console.log("submitted!", vals);
+        })
+      } className="flex flex-col grow shrink-0 basis-auto">
+                        <FormField id="email" label="Email" error={visibleErrors.email}>
                           <TextInput
                             id="email"
                             name="email"
@@ -134,15 +58,15 @@ export default function OwnerRegisterPage() {
                             placeholder="Email"
                             value={values.email}
                             onChange={onChange("email")}
-                            hasError={!!errors.email}
-                            aria-describedby={errors.email ? "email-error" : undefined}
-                            aria-invalid={!!errors.email}
+                            hasError={!!visibleErrors.email}
+                            aria-describedby={visibleErrors.email ? "email-error" : undefined}
+                            aria-invalid={!!visibleErrors.email}
                             autoComplete="email"
                             spellCheck={false}
                           />
                         </FormField>
 
-                        <FormField id="password" label="Password" error={errors.password}>
+                        <FormField id="password" label="Password" error={visibleErrors.password}>
                           <TextInput
                             id="password"
                             name="password"
@@ -150,9 +74,9 @@ export default function OwnerRegisterPage() {
                             placeholder="***********"
                             value={values.password}
                             onChange={onChange("password")}
-                            hasError={!!errors.password}
-                            aria-describedby={errors.password ? "password-error" : undefined}
-                            aria-invalid={!!errors.password}
+                            hasError={!!visibleErrors.password}
+                            aria-describedby={visibleErrors.password ? "password-error" : undefined}
+                            aria-invalid={!!visibleErrors.password}
                             autoComplete="new-password"
                             spellCheck={false}
                           />
@@ -161,7 +85,7 @@ export default function OwnerRegisterPage() {
                         <FormField
                           id="passwordConf"
                           label="Password Confirmation"
-                          error={errors.passwordConf}
+                          error={visibleErrors.passwordConf}
                         >
                           <TextInput
                             id="passwordConf"
@@ -170,11 +94,11 @@ export default function OwnerRegisterPage() {
                             placeholder="***********"
                             value={values.passwordConf}
                             onChange={onChange("passwordConf")}
-                            hasError={!!errors.passwordConf}
+                            hasError={!!visibleErrors.passwordConf}
                             aria-describedby={
-                              errors.passwordConf ? "passwordConf-error" : undefined
+                              visibleErrors.passwordConf ? "passwordConf-error" : undefined
                             }
-                            aria-invalid={!!errors.passwordConf}
+                            aria-invalid={!!visibleErrors.passwordConf}
                             autoComplete="new-password"
                             spellCheck={false}
                           />
