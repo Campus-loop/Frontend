@@ -9,6 +9,26 @@ type FieldProps = {
 };
 
 
+export type Values = { email: string; password: string; passwordConf: string };
+export type Errors = { email?: string; password?: string; passwordConf?: string };
+
+const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const pwNumberRe = /[0-9]/;
+const pwSpecialRe = /[!@#$%^&*()_\-+={[}\]|\\:;"'<>,.?/]/;
+
+export function validateRegister(v: Values): Errors {
+  const next: Errors = {};
+  if (!emailRe.test(v.email)) next.email = "Enter a valid email address";
+  else if (!v.email.endsWith(".edu")) next.email = "Only .edu emails are allowed";
+
+  if (v.password.length < 6) next.password = "Password must be at least 6 characters";
+  else if (!pwNumberRe.test(v.password)) next.password = "Password must include at least one number";
+  else if (!pwSpecialRe.test(v.password)) next.password = "Password must include at least one special character";
+
+  if (v.passwordConf !== v.password) next.passwordConf = "Passwords do not match";
+  return next;
+}
+
 
 
 
