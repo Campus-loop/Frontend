@@ -2,7 +2,6 @@
 
 import { FormField, TextInput, SubmitBar } from "@/app/components/auth/authForms";
 import { useRegisterForm } from "@/app/components/auth/authFucntion";
-import { useMemo, useState } from "react";
 
 
 export default function OwnerRegisterPage() {
