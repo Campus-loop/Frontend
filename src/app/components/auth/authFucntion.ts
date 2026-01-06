@@ -4,16 +4,47 @@ import { useMemo, useState } from "react";
 import type { Values, Errors } from "@/app/components/auth/authForms";
 import { validateRegister } from "@/app/components/auth/authForms";
 
+/* ---------------------------
+   Login: types + validator는 밖으로 빼는 게 정석
+--------------------------- */
+type LoginValues = { email: string; name:string; password: string };
+type LoginErrors = { email?: string; name?:string; password?: string };
 
+const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateLogin(v: LoginValues): LoginErrors {
+  const next: LoginErrors = {};
+
+  if (!v.email) next.email = "Email is required";
+  else if (!emailRe.test(v.email)) next.email = "Enter a valid email";
+
+  if (!v.password) next.password = "Password is required";
+
+  return next;
+}
+
+/* ---------------------------
+   Register
+--------------------------- */
 export function useRegisterForm() {
-  const [values, setValues] = useState<Values>({ email: "", password: "", passwordConf: "" });
-  const [touched, setTouched] = useState<Partial<Record<keyof Values, boolean>>>({});
+  const [values, setValues] = useState<Values>({
+    email: "",
+    name: "",
+    password: "",
+    passwordConf: "",
+  });
+
+  const [touched, setTouched] = useState<Partial<Record<keyof Values, boolean>>>(
+    {}
+  );
   const [submitting, setSubmitting] = useState(false);
 
   const allErrors = useMemo(() => validateRegister(values), [values]);
 
   const isValid = useMemo(() => {
-    if (!values.email || !values.password || !values.passwordConf) return false;
+    // ✅ name도 포함 (원래 코드엔 빠져있었음)
+    if (!values.email || !values.name || !values.password || !values.passwordConf)
+      return false;
     return Object.keys(allErrors).length === 0;
   }, [values, allErrors]);
 
@@ -22,16 +53,24 @@ export function useRegisterForm() {
     setTouched((prev) => ({ ...prev, [name]: true }));
   };
 
-  const onChange = (name: keyof Values) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setField(name)(e.target.value);
-  };
+  const onChange =
+    (name: keyof Values) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setField(name)(e.target.value);
+    };
 
   const onSubmit = async (
     e: React.FormEvent<HTMLFormElement>,
     submitFn: (values: Values) => Promise<void>
   ) => {
     e.preventDefault();
-    setTouched({ email: true, password: true, passwordConf: true });
+
+    // ✅ 제출 시 모든 필드 touched 처리 (원래 name 빠짐)
+    setTouched({
+      email: true,
+      name: true,
+      password: true,
+      passwordConf: true,
+    });
 
     const errs = validateRegister(values);
     if (Object.keys(errs).length > 0) return;
@@ -52,38 +91,31 @@ export function useRegisterForm() {
     return v;
   }, [allErrors, touched]);
 
-  return { values, setField, onChange, visibleErrors, allErrors, touched, isValid, submitting, onSubmit };
+  return {
+    values,
+    setField,
+    onChange,
+    visibleErrors,
+    allErrors,
+    touched,
+    isValid,
+    submitting,
+    onSubmit,
+  };
 }
 
-
-
-
-
+/* ---------------------------
+   Login
+--------------------------- */
 export function useLoginForm() {
-  type LoginValues = { email: string; password: string };
-type LoginErrors = { email?: string; password?: string };
-const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function validateLogin(v: LoginValues): LoginErrors {
-  const next: LoginErrors = {};
-
-  // 로그인에서는 과한 조건 걸지 말고 최소만
-  if (!v.email) next.email = "Email is required";
-  else if (!emailRe.test(v.email)) next.email = "Enter a valid email";
-
-  if (!v.password) next.password = "Password is required";
-
-  return next;
-}
-
-
-  const [values, setValues] = useState<LoginValues>({ email: "", password: "" });
-  const [touched, setTouched] = useState<Partial<Record<keyof LoginValues, boolean>>>({});
+  const [values, setValues] = useState<LoginValues>({ email: "", name:"", password: "" });
+  const [touched, setTouched] = useState<
+    Partial<Record<keyof LoginValues, boolean>>
+  >({});
   const [submitting, setSubmitting] = useState(false);
 
   const allErrors = useMemo(() => validateLogin(values), [values]);
 
-  // 로그인 UX: 처음부터 에러 띄우지 말고 touched 된 것만
   const visibleErrors: LoginErrors = useMemo(() => {
     const v: LoginErrors = {};
     (Object.keys(allErrors) as (keyof LoginValues)[]).forEach((k) => {
@@ -93,14 +125,21 @@ function validateLogin(v: LoginValues): LoginErrors {
   }, [allErrors, touched]);
 
   const isValid = useMemo(() => {
-    return values.email !== "" && values.password !== "" && Object.keys(allErrors).length === 0;
+    return (
+      values.email !== "" &&
+      values.password !== "" &&
+      Object.keys(allErrors).length === 0
+    );
   }, [values, allErrors]);
+
+  const setField = (name: keyof LoginValues) => (value: string) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
+    setTouched((prev) => ({ ...prev, [name]: true }));
+  };
 
   const onChange =
     (name: keyof LoginValues) => (e: React.ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
-      setValues((prev) => ({ ...prev, [name]: value }));
-      setTouched((prev) => ({ ...prev, [name]: true }));
+      setField(name)(e.target.value);
     };
 
   const onSubmit = async (
@@ -121,5 +160,5 @@ function validateLogin(v: LoginValues): LoginErrors {
     }
   };
 
-  return { values, onChange, visibleErrors, isValid, submitting, onSubmit };
+  return { values, setField, onChange, visibleErrors, isValid, submitting, onSubmit };
 }
