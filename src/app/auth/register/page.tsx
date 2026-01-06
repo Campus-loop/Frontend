@@ -1,13 +1,39 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { FormField, TextInput, SubmitBar } from "@/app/components/auth/authForms";
 import { useRegisterForm } from "@/app/components/auth/authFucntion";
 
 
 export default function OwnerRegisterPage() {
+  const router = useRouter();
   const { values, onChange, visibleErrors, isValid, submitting, onSubmit } =
   useRegisterForm();
 
+
+
+  const submitFn = async (v: typeof values) => {
+    console.log(values)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include", // 쿠키 쓰면 필요
+      body: JSON.stringify(v),
+    });
+
+    // 서버가 에러 응답이면 throw 해서 UI에서 잡게
+    if (!res.ok) {
+      console.log(res)
+      const data = await res.json().catch(() => null);
+      throw new Error(data?.message ?? "Register failed");
+    }
+
+    // 성공 응답 파싱
+    const data = await res.json();
+
+    // 예: 회원가입 성공하면 로그인 페이지로
+    router.push("/auth/login");
+  };
 
 
   return (
@@ -43,12 +69,8 @@ export default function OwnerRegisterPage() {
                 <div className="flex flex-col flex-1 [&>*]:flex [&>*]:flex-col [&>*]:flex-1">
                   <div>
                     <div className="space-y-8 my-6 px-8">
-                      <form onSubmit={(e) =>
-        onSubmit(e, async (vals) => {
-          // 여기서 API 호출
-          console.log("submitted!", vals);
-        })
-      } className="flex flex-col grow shrink-0 basis-auto">
+                      <form onSubmit={(e) => onSubmit(e, submitFn)}
+       className="flex flex-col grow shrink-0 basis-auto">
                         <FormField id="email" label="Email" error={visibleErrors.email}>
                           <TextInput
                             id="email"
@@ -61,6 +83,22 @@ export default function OwnerRegisterPage() {
                             aria-describedby={visibleErrors.email ? "email-error" : undefined}
                             aria-invalid={!!visibleErrors.email}
                             autoComplete="email"
+                            spellCheck={false}
+                          />
+                        </FormField>
+
+                        <FormField id="name" label="Name" error={visibleErrors.name}>
+                          <TextInput
+                            id="name"
+                            name="name"
+                            type="name"
+                            placeholder="Name"
+                            value={values.name}
+                            onChange={onChange("name")}
+                            hasError={!!visibleErrors.name}
+                            aria-describedby={visibleErrors.name ? "name-error" : undefined}
+                            aria-invalid={!!visibleErrors.name}
+                            autoComplete="name"
                             spellCheck={false}
                           />
                         </FormField>
