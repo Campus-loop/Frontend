@@ -12,17 +12,14 @@ export default function loginPage(){
 
 
   const submitFn = async (v: typeof values) => {
-    console.log(values)
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // 쿠키 쓰면 필요
       body: JSON.stringify(v),
     });
-
     // 서버가 에러 응답이면 throw 해서 UI에서 잡게
     if (!res.ok) {
-      console.log(res)
       const data = await res.json().catch(() => null);
       throw new Error(data?.message ?? "Login Failed");
     }
@@ -30,8 +27,7 @@ export default function loginPage(){
     // 성공 응답 파싱
     const data = await res.json();
 
-    // 예: 회원가입 성공하면 로그인 페이지로
-    router.push("/auth/login");
+    router.push("/");
   };
 
     return (
